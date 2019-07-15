@@ -1,7 +1,7 @@
 ---
 id: bytecode-verifier
 title: Bytecode Verifier
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/language/bytecode_verifier/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/language/bytecode_verifier/README.md
 ---
 
 ### Bytecode Verifier: Checking Safety of Stack Usage, Types, Resources, and References

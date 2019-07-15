@@ -13,7 +13,7 @@ To contribute to the XPeer Core implementation, first start with the proper deve
 
 To get the development installation with all the necessary dependencies for linting, testing, and building the documentation, run the following:
 ```bash
-git clone https://github.com/xpeer/xpeer.git
+git clone https://github.com/xpeerchain/xpeerchain.git
 cd xpeer
 ./scripts/dev_setup.sh
 cargo build
@@ -48,8 +48,8 @@ During the initial phase of heavy development, we plan to only audit and review 
 
 ## Contributor License Agreement
 
-For pull request to be accepted by any XPeer projects, a CLA must be signed. You will only need to do this once to work on any of XPeer's open source projects. Individuals contributing on their own behalf can sign the [Individual CLA](https://github.com/xpeer/xpeer/blob/master/contributing/individual-cla.pdf). If you are contributing on behalf of your employer, please ask them to sign the [Corporate CLA](https://github.com/xpeer/xpeer/blob/master/contributing/corporate-cla.pdf).
+For pull request to be accepted by any XPeer projects, a CLA must be signed. You will only need to do this once to work on any of XPeer's open source projects. Individuals contributing on their own behalf can sign the [Individual CLA](https://github.com/xpeerchain/xpeerchain/blob/master/contributing/individual-cla.pdf). If you are contributing on behalf of your employer, please ask them to sign the [Corporate CLA](https://github.com/xpeerchain/xpeerchain/blob/master/contributing/corporate-cla.pdf).
 
 ## Issues
 
-XPeer uses [GitHub issues](https://github.com/xpeer/xpeer/issues) to track bugs. Please include necessary information and instructions to reproduce your issue.
+XPeer uses [GitHub issues](https://github.com/xpeerchain/xpeerchain/issues) to track bugs. Please include necessary information and instructions to reproduce your issue.

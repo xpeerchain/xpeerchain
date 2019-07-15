@@ -1,7 +1,7 @@
 ---
 id: consensus
 title: Consensus
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/consensus/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/consensus/README.md
 ---
 
 # Consensus

@@ -1,7 +1,7 @@
 ---
 id: crypto
 title: NextGen Crypto
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/crypto/nextgen_crypto/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/crypto/nextgen_crypto/README.md
 ---
 # NextGen
 

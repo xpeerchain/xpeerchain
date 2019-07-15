@@ -1,7 +1,7 @@
 ---
 id: vm
 title: Virtual Machine
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/language/vm/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/language/vm/README.md
 ---
 
 # MoveVM Core
@@ -15,7 +15,7 @@ metering logical abstraction is also defined there.
 
 The MoveVM is a stack machine with a static type system. The MoveVM honors
 the specification of the Move language through a mix of file format,
-verification (for reference [bytcode verifier README](https://github.com/xpeer/xpeer/blob/master/language/bytecode_verifier/README.md))
+verification (for reference [bytcode verifier README](https://github.com/xpeerchain/xpeerchain/blob/master/language/bytecode_verifier/README.md))
 and runtime constraints. The structure of the file format allows the
 definition of modules, types (resources and unrestricted types), and
 functions. Code is expressed via bytecode instructions, which may have
@@ -42,7 +42,7 @@ The `CompiledModule` and `CompiledScript` definitions in
 `xpeer/language/vm/src/file_format.rs` are the top-level structs for a Move
 *Module* or *Transaction Script*, respectively. These structs provide a
 simple abstraction over the file format. Additionally, a set of
-[*Views*](https://github.com/xpeer/xpeer/blob/master/language/vm/src/views.rs) are defined to easily navigate and inspect
+[*Views*](https://github.com/xpeerchain/xpeerchain/blob/master/language/vm/src/views.rs) are defined to easily navigate and inspect
 `CompiledModule`s and `CompiledScript`s.
 
 ## Folder Structure

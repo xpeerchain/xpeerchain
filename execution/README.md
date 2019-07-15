@@ -1,7 +1,7 @@
 ---
 id: execution
 title: Execution
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/execution/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/execution/README.md
 ---
 
 # Execution

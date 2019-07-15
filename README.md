@@ -59,4 +59,4 @@ Read our [Contributing guide](https://developers.xpeer.org/docs/community/contri
 
 ## License
 
-XPeer Core is licensed as [Apache 2.0](https://github.com/xpeer/xpeer/blob/master/LICENSE).
+XPeer Core is licensed as [Apache 2.0](https://github.com/xpeerchain/xpeerchain/blob/master/LICENSE).

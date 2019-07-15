@@ -1,7 +1,7 @@
 ---
 id: crypto
 title: Crypto
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/crypto/legacy_crypto/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/crypto/legacy_crypto/README.md
 ---
 # Legacy Crypto
 

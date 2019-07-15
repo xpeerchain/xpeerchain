@@ -1,7 +1,7 @@
 ---
 id: mempool
 title: Mempool
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/mempool/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/mempool/README.md
 ---
 # Mempool
 

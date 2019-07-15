@@ -1,7 +1,7 @@
 ---
 id: vm-runtime
 title: MoveVM Runtime
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/language/vm/vm_runtime/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/language/vm/vm_runtime/README.md
 ---
 
 # MoveVM Runtime

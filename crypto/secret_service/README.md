@@ -1,7 +1,7 @@
 ---
 id: secret-service
 title: Secret Service
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/crypto/secret_service/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/crypto/secret_service/README.md
 ---
 # Secret Service
 

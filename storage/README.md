@@ -1,7 +1,7 @@
 ---
 id: storage
 title: Storage
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/storage/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/storage/README.md
 ---
 
 # Storage

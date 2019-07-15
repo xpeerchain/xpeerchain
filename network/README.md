@@ -1,7 +1,7 @@
 ---
 id: network
 title: Network
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/network/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/network/README.md
 ---
 
 # Network

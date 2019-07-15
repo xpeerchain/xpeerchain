@@ -1,7 +1,7 @@
 ---
 id: ir-to-bytecode
 title: Move IR Compiler
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/language/compiler/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/language/compiler/README.md
 ---
 
 # Move IR Compiler
@@ -15,7 +15,7 @@ The Move IR compiler compiles the Move IR down to its bytecode representation.
 The Move IR compiler compiles modules and scripts written in Move down to
 their respective bytecode representations. The two data types used to
 represent these outputs are `CompiledModule` and `CompiledScript`. These
-data types are defined in [file_format.rs](https://github.com/xpeer/xpeer/blob/master/language/vm/src/file_format.rs).
+data types are defined in [file_format.rs](https://github.com/xpeerchain/xpeerchain/blob/master/language/vm/src/file_format.rs).
 
 Beyond translating Move IR to Move bytecode, the compiler's purpose is as a
 testing tool for the bytecode verifier. Because of this, its job is to
@@ -25,7 +25,7 @@ performed during the compilation process. In fact, the compiler goes out of
 its way to push these semantic checks into the bytecode, and compile
 semantically invalid code in the Move IR to equivalent---semantically
 invalid---bytecode programs. The semantics of the compiled bytecode is
-then verified by the [bytecode verifier](https://github.com/xpeer/xpeer/blob/master/language/bytecode_verifier/README.md). The compiler command line
+then verified by the [bytecode verifier](https://github.com/xpeerchain/xpeerchain/blob/master/language/bytecode_verifier/README.md). The compiler command line
 automatically calls the bytecode verifer at the end of compilation.
 
 ## Command-line options

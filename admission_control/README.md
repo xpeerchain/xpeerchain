@@ -1,7 +1,7 @@
 ---
 id: admission-control
 title: Admission Control
-custom_edit_url: https://github.com/xpeer/xpeer/edit/master/admission_control/README.md
+custom_edit_url: https://github.com/xpeerchain/xpeerchain/edit/master/admission_control/README.md
 ---
 # Admission Control
 
