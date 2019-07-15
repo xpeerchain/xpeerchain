@@ -1,0 +1,11 @@
+// check: VerificationError { kind: FunctionDefinition, idx: 0, err: MoveLocExistsBorrowError(4) }
+
+import 0x0.XPeerCoin;
+main() {
+    let resource1: R#XPeerCoin.T;
+    let resource_ref: &mut R#XPeerCoin.T;
+    resource1 = XPeerCoin.zero();
+    resource_ref = &mut resource1;
+    *move(resource_ref) = move(resource1);
+    return;
+}

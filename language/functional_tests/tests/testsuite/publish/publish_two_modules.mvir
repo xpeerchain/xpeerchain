@@ -1,0 +1,71 @@
+module MoneyHolder {
+        import 0x0.XPeerCoin;
+
+        resource T { money: R#XPeerCoin.T }
+
+        public new(m: R#XPeerCoin.T): R#Self.T {
+            return T{ money: move(m) };
+        }
+
+        public value(this :&R#Self.T): u64 {
+            let ref: &R#XPeerCoin.T;
+            let val: u64;
+            ref = &copy(this).money;
+            val = XPeerCoin.value(move(ref));
+            release(move(this));
+            return move(val);
+        }
+
+        public destroy_t(t: R#Self.T) {
+            let money: R#XPeerCoin.T;
+            T{ money } = move(t);
+            XPeerCoin.destroy_zero(move(money));
+            return;
+        }
+}
+
+//! new-transaction
+
+module Bar {
+        struct T{baz: u64}
+        public new(m: u64): V#Self.T {
+            return T{baz: move(m)};
+        }
+        public value(this: &V#Self.T): u64 {
+            let ref: &u64;
+            ref = &move(this).baz;
+            return *move(ref);
+        }
+}
+
+//! new-transaction
+
+import {{default}}.MoneyHolder;
+import {{default}}.Bar;
+import 0x0.XPeerCoin;
+
+main() {
+    let coin: R#XPeerCoin.T;
+    let money_holder: R#MoneyHolder.T;
+    let money_holder_ref: &R#MoneyHolder.T;
+    let value: u64;
+    let v: u64;
+    let bar: V#Bar.T;
+    let bar_ref: &V#Bar.T;
+    let v2: u64;
+
+    coin = XPeerCoin.zero();
+    money_holder = MoneyHolder.new(move(coin));
+    money_holder_ref = &money_holder;
+
+    value = MoneyHolder.value(move(money_holder_ref));
+    assert(copy(value) == 0, 42);
+    MoneyHolder.destroy_t(move(money_holder));
+
+    v = 1;
+    bar = Bar.new(copy(v));
+    bar_ref = &bar;
+    v2 = Bar.value(move(bar_ref));
+    assert(copy(v) == copy(v2), 42);
+    return;
+}

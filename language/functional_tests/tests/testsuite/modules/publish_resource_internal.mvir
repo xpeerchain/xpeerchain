@@ -1,0 +1,21 @@
+// check: no struct definition referencing in scripts
+
+module Token {
+    resource T { }
+    public new(): R#Self.T {
+        return T{ };
+    }
+}
+
+//! new-transaction
+
+import {{default}}.Token;
+
+main() {
+    let addr1: address;
+    let t: R#Token.T;
+    addr1 = get_txn_sender();
+    t = Token.new();
+    move_to_sender<Token>(move(t));
+    return;
+}

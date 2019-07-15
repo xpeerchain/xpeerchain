@@ -1,0 +1,14 @@
+import 0x0.XPeerAccount;
+
+main() {
+    let addr: address;
+    let account_exists: bool;
+    let account_balance: u64;
+
+    addr = 0x0111111111111111111111111111111111111111111111111111111111111110;
+    account_exists = XPeerAccount.exists(copy(addr));
+    account_balance = XPeerAccount.balance(move(addr));
+    return;
+}
+
+// check: Execution(MissingData)

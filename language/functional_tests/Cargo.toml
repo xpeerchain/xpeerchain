@@ -1,0 +1,22 @@
+[package]
+name = "functional_tests"
+version = "0.1.0"
+authors = ["XPeer Association <opensource@xpeer.org>"]
+license = "Apache-2.0"
+edition = "2018"
+
+[dependencies]
+failure = { path = "../../common/failure_ext", package = "failure_ext" }
+ir_to_bytecode = { path = "../compiler/ir_to_bytecode" }
+stdlib = { path = "../stdlib" }
+types = { path = "../../types" }
+vm = { path = "../vm" }
+bytecode_verifier = { path = "../bytecode_verifier" }
+language_e2e_tests = { path = "../e2e_tests" }
+config = { path = "../../config" }
+transaction_builder = { path = "../transaction_builder" }
+termcolor = "1.0.4"
+filecheck = "0.4.0"
+datatest = "0.3.5"
+lazy_static = "1.3.0"
+regex = "1.1.6"

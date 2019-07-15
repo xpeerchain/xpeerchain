@@ -1,0 +1,18 @@
+[package]
+name = "compiler"
+version = "0.1.0"
+authors = ["XPeer Association <opensource@xpeer.org>"]
+license = "Apache-2.0"
+publish = false
+edition = "2018"
+
+[dependencies]
+bytecode_verifier = { path = "../bytecode_verifier" }
+failure = { path = "../../common/failure_ext", package = "failure_ext" }
+ir_to_bytecode = { path = "ir_to_bytecode" }
+stdlib = { path = "../stdlib" }
+types = { path = "../../types" }
+vm = { path = "../vm" }
+log = "0.4.6"
+structopt = "0.2.15"
+serde_json = "1.0.38"

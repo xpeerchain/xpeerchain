@@ -1,0 +1,58 @@
+# Rust specific ignores
+/target
+**/*.rs.bk
+# Cargo.lock is needed for deterministic testing and repeatable builds.
+#
+# Having it in the repo slows down development cycle.
+#
+# More information here https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
+Cargo.lock
+
+# Ignore generated files in proto folders
+**/proto/*.rs
+!**/proto/mod.rs
+**/proto/*/*.rs
+!**/proto/*/mod.rs
+
+# IDE
+.idea
+.idea/*
+*.iml
+.vscode
+
+# Ignore wallet mnemonic files used for deterministic key derivation
+*.mnemonic
+
+# Generated Parser File by LALRPOP
+language/compiler/ir_to_bytecode/syntax/src/syntax.rs
+# Older locations for this file.
+language/compiler/ir_to_bytecode/src/parser/syntax.rs
+language/move_ir/
+
+# GDB related
+**/.gdb_history
+
+# macOS Specific ignores
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk

@@ -1,0 +1,22 @@
+import 0x0.XPeerAccount;
+import 0x0.XPeerCoin;
+
+main() {
+    let addr2: address;
+    let account_exists: bool;
+    let ten_coins: R#XPeerCoin.T;
+    let account2_balance: u64;
+
+    addr2 = 0x0111111111111111111111101111111111111011111111111111111111101110;
+    account_exists = XPeerAccount.exists(copy(addr2));
+    assert(!move(account_exists), 83);
+
+    ten_coins = XPeerAccount.withdraw_from_sender(10);
+    create_account(copy(addr2));
+    XPeerAccount.deposit(copy(addr2), move(ten_coins));
+
+    account2_balance = XPeerAccount.balance(move(addr2));
+    assert(copy(account2_balance) == 10, 84);
+
+    return;
+}

@@ -1,0 +1,14 @@
+//! account: Alice, 1000000
+//! account: Bob, 1000000
+
+import 0x0.XPeerAccount;
+import 0x0.XPeerCoin;
+
+main() {
+    let coins: R#XPeerCoin.T;
+
+    coins = XPeerAccount.withdraw_from_sender(42);
+    XPeerAccount.deposit({{bob}}, move(coins));
+
+    return;
+}

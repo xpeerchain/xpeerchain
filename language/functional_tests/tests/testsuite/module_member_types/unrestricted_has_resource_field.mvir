@@ -1,0 +1,10 @@
+// check: VerificationError { kind: StructDefinition, idx: 0, err: InvalidResourceField }
+
+module Test {
+    import 0x0.XPeerCoin;
+
+    struct T{
+        fc: R#XPeerCoin.T,
+        fint: u64,
+    }
+}

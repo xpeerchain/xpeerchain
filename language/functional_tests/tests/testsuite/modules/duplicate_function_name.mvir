@@ -1,0 +1,6 @@
+// check: VerificationError { kind: FunctionDefinition, idx: 1, err: DuplicateElement }
+
+module M {
+    f() {}
+    f() {}
+}

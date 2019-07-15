@@ -1,0 +1,22 @@
+import 0x0.XPeerAccount;
+import 0x0.XPeerCoin;
+
+main() {
+    let addr: address;
+    let account_exists: bool;
+    let ten_coins: R#XPeerCoin.T;
+    let account2_sequence_number: u64;
+
+    addr = 0x0111111111111111111111111111111111111011111111111111111111111110;
+    account_exists = XPeerAccount.exists(copy(addr));
+    assert(!move(account_exists), 83);
+
+    ten_coins = XPeerAccount.withdraw_from_sender(10);
+    create_account(copy(addr));
+    XPeerAccount.deposit(copy(addr), move(ten_coins));
+
+    account2_sequence_number = XPeerAccount.sequence_number(move(addr));
+    assert(copy(account2_sequence_number) == 0, 84);
+
+    return;
+}

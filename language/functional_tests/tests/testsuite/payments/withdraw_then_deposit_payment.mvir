@@ -1,0 +1,29 @@
+//! account: bob, 1000000
+
+import 0x0.XPeerAccount;
+import 0x0.XPeerCoin;
+
+main() {
+    let sender_addr: address;
+    let recipient_addr: address;
+    let sender_original_balance: u64;
+    let recipient_original_balance: u64;
+    let five_coins: R#XPeerCoin.T;
+    let sender_new_balance: u64;
+    let recipient_new_balance: u64;
+
+    sender_addr = get_txn_sender();
+    recipient_addr = {{bob}};
+    sender_original_balance = XPeerAccount.balance(copy(sender_addr));
+    recipient_original_balance = XPeerAccount.balance(copy(recipient_addr));
+    five_coins = XPeerAccount.withdraw_from_sender(5);
+    XPeerAccount.deposit(copy(recipient_addr), move(five_coins));
+
+    sender_new_balance = XPeerAccount.balance(move(sender_addr));
+    recipient_new_balance = XPeerAccount.balance(move(recipient_addr));
+
+    assert(move(sender_new_balance) == move(sender_original_balance) - 5, 77);
+    assert(move(recipient_new_balance) == move(recipient_original_balance) + 5, 88);
+
+    return;
+}

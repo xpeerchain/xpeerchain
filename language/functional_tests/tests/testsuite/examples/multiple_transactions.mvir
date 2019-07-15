@@ -1,0 +1,55 @@
+//! account: alice, 5000
+//! account: bob, 5000
+
+// Alice sends 200 XPeer Coins to Bob
+//! sender: alice
+//! args: {{bob}}
+
+import 0x0.XPeerAccount;
+import 0x0.XPeerCoin;
+
+main(receiver: address) {
+    let coins: R#XPeerCoin.T;
+
+    coins = XPeerAccount.withdraw_from_sender(200);
+    XPeerAccount.deposit(move(receiver), move(coins));
+
+    return;    
+}
+
+
+
+// Alice checks that her balance is less than 4800 XPeer Coins. (200 + gas)
+//! new-transaction
+//! sender: alice
+
+import 0x0.XPeerAccount;
+
+main() {
+    let balance: u64;
+    let sender: address;
+
+    sender = get_txn_sender();
+    balance = XPeerAccount.balance(move(sender));
+    assert(move(balance) < 4800, 42);
+
+    return;
+}
+
+
+
+// Bob checks that he has 1200 XPeer Coins
+//! new-transaction
+//! sender: bob
+import 0x0.XPeerAccount;
+
+main() {
+    let balance: u64;
+    let sender: address;
+
+    sender = get_txn_sender();
+    balance = XPeerAccount.balance(move(sender));
+    assert(move(balance) == 5200, 42);
+
+    return;
+}

@@ -1,0 +1,12 @@
+[package]
+name = "proptest_helpers"
+version = "0.1.0"
+authors = ["XPeer Association <opensource@xpeer.org>"]
+license = "Apache-2.0"
+publish = false
+edition = "2018"
+
+[dependencies]
+crossbeam = "0.7.1"
+proptest = "0.9.4"
+proptest-derive = "0.1.2"

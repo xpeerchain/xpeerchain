@@ -1,0 +1,11 @@
+import 0x0.XPeerCoin;
+
+main() {
+    let z: R#XPeerCoin.T;
+    z = XPeerCoin.zero();
+    z = XPeerCoin.zero();
+    return;
+}
+
+// check: VerificationError
+// check: StLocUnsafeToDestroyError

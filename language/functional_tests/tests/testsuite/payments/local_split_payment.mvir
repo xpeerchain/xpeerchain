@@ -1,0 +1,44 @@
+//! account: bob, 1000000
+//! account: carol, 1000000
+
+import 0x0.XPeerAccount;
+import 0x0.XPeerCoin;
+
+main() {
+    let addr1: address;
+    let addr2: address;
+    let addr3: address;
+    let struct1_original_balance: u64;
+    let struct2_original_balance: u64;
+    let struct3_original_balance: u64;
+    let five_coins1: R#XPeerCoin.T;
+    let fc_ref: &mut R#XPeerCoin.T;
+    let five_coins2: R#XPeerCoin.T;
+    let struct1_new_balance: u64;
+    let struct2_new_balance: u64;
+    let struct3_new_balance: u64;
+
+    addr1 = get_txn_sender();
+    addr2 = {{bob}};
+    addr3 = {{carol}};
+
+    struct1_original_balance = XPeerAccount.balance(copy(addr1));
+    struct2_original_balance = XPeerAccount.balance(copy(addr2));
+    struct3_original_balance = XPeerAccount.balance(copy(addr3));
+
+    five_coins1 = XPeerAccount.withdraw_from_sender(10);
+    fc_ref = &mut five_coins1;
+    five_coins2 = XPeerCoin.withdraw(move(fc_ref), 5);
+
+    XPeerAccount.deposit(copy(addr2), move(five_coins1));
+    XPeerAccount.deposit(copy(addr3), move(five_coins2));
+
+    struct1_new_balance = XPeerAccount.balance(copy(addr1));
+    struct2_new_balance = XPeerAccount.balance(copy(addr2));
+    struct3_new_balance = XPeerAccount.balance(copy(addr3));
+
+    assert(copy(struct1_new_balance) == copy(struct1_original_balance) - 10, 41);
+    assert(copy(struct2_new_balance) == copy(struct2_original_balance) + 5, 42);
+    assert(copy(struct3_new_balance) == copy(struct3_original_balance) + 5, 43);
+    return;
+}

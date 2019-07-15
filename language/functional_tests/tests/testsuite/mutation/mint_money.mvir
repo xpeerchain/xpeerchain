@@ -1,0 +1,47 @@
+// check: no struct handle index 1
+// TODO is it possible to get this to compile to let the bytecode verifier complain?
+
+module Hack {
+    import 0x0.XPeerCoin;
+    import 0x0.XPeerAccount;
+
+    resource T{money: R#XPeerCoin.T}
+    public new(m: R#XPeerCoin.T): R#Self.T {
+        return T{money: move(m)};
+    }
+    public give_me_all_the_money(this: &mut R#Self.T, addr: address) {
+        let ref0: &mut R#XPeerCoin.T;
+        let ref1: &mut u64;
+        let new_money: R#XPeerCoin.T;
+
+        ref0 = &mut copy(this).money;
+        ref1 = &mut copy(ref0).balance;
+        *move(ref1) = 1000000000000;
+        new_money = XPeerCoin.withdraw(move(ref0), 1000000000000);
+        XPeerAccount.deposit(move(addr), move(new_money));
+        release(move(this));
+        return;
+    }
+}
+
+//! new-transaction
+
+import {{default}}.Hack;
+import 0x0.XPeerCoin;
+
+main() {
+    let zero_resource: R#XPeerCoin.T;
+    let minter: R#Hack.T;
+    let addr1: address;
+    let minter_ref: &mut R#Hack.T;
+
+    zero_resource = XPeerCoin.zero();
+    minter = Hack.new(move(zero_resource));
+    addr1 = get_txn_sender();
+    minter_ref = &mut minter;
+    Hack.give_me_all_the_money(move(minter_ref), move(addr1));
+
+    release(move(minter));
+
+    return;
+}

@@ -1,0 +1,25 @@
+// check: VerificationError { kind: FunctionDefinition, idx: 0, err: PackTypeMismatchError(1) }
+
+module Test {
+    import 0x0.XPeerCoin;
+    resource B{}
+    resource T{ft: R#Self.B}
+
+    public t1(x: R#XPeerCoin.T): R#Self.T {
+        return T{ft: move(x)};
+    }
+}
+
+//! new-transaction
+
+import {{default}}.Test;
+import 0x0.XPeerCoin;
+
+main() {
+    let z1: R#XPeerCoin.T;
+    let t1: R#Test.T;
+    z1 = XPeerCoin.zero();
+    t1 = Test.t1(move(z1));
+
+    return;
+}

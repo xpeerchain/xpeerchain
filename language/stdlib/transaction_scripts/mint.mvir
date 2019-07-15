@@ -1,0 +1,6 @@
+import 0x0.XPeerAccount;
+import 0x0.XPeerCoin;
+main(payee: address, amount: u64) {
+  XPeerAccount.mint_to_address(move(payee), move(amount));
+  return;
+}

@@ -1,0 +1,19 @@
+// check: VerificationError { kind: FunctionDefinition, idx: 0, err: PackTypeMismatchError(1) }
+
+module Test {
+    struct T{fint: u64}
+
+    public t1(): V#Self.T {
+        return T{fint: false};
+    }
+}
+
+//! new-transaction
+
+import {{default}}.Test;
+
+main() {
+    let t1: V#Test.T;
+    t1 = Test.t1();
+    return;
+}

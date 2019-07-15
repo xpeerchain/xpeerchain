@@ -1,0 +1,17 @@
+import 0x0.XPeerAccount;
+import 0x0.XPeerCoin;
+
+main() {
+    let addr: address;
+    let ten_coins: R#XPeerCoin.T;
+
+    addr = get_txn_sender();
+    ten_coins = XPeerAccount.withdraw_from_sender(10);
+    XPeerAccount.deposit(copy(addr), move(ten_coins));
+    XPeerAccount.deposit(move(addr), move(ten_coins));
+
+    return;
+}
+
+// check: VerificationError
+// check: MoveLocUnavailableError(9)

@@ -1,0 +1,31 @@
+// check: VerificationError { kind: FunctionDefinition, idx: 0, err: RetUnsafeToDestroyError(5) }
+module A {
+    import 0x0.XPeerCoin;
+
+    resource T{g: R#XPeerCoin.T}
+
+    public new(g: R#XPeerCoin.T): R#Self.T {
+        return T{g: move(g)};
+    }
+
+    public destroy(a: R#Self.T) {
+        let c: R#XPeerCoin.T;
+        T{g: c} = move(a);
+        XPeerCoin.destroy_zero(move(c));
+        return;
+    }
+}
+
+//! new-transaction
+
+import {{default}}.A;
+import 0x0.XPeerCoin;
+
+main() {
+    let zero_resource: R#XPeerCoin.T;
+    let s: R#A.T;
+    zero_resource = XPeerCoin.zero();
+    s = A.new(move(zero_resource));
+
+    return;
+}

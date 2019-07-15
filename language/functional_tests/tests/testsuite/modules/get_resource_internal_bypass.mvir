@@ -1,0 +1,21 @@
+// check: Unrecognized token
+
+module Token {
+    resource T { }
+    public new(): R#Self.T {
+        return T{ };
+    }
+}
+
+//! new-transaction
+
+import {{default}}.Token;
+
+main() {
+    let sender: address;
+    let struct1: &mut R#Token.T;
+
+    sender = get_txn_sender();
+    struct1 = borrow_global<Token.T>(copy(sender));
+    return;
+}

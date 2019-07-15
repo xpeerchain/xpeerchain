@@ -1,0 +1,24 @@
+//! no-execute
+
+// Multiple payee example. This is written in a slightly verbose way to
+// emphasize the ability to split a `XPeerCoin.T` resource. The more concise
+// way would be to use multiple calls to `XPeerAccount.withdraw_from_sender`.
+
+import 0x0.XPeerAccount;
+import 0x0.XPeerCoin;
+main(payee1: address, amount1: u64, payee2: address, amount2: u64) {
+  let coin1: R#XPeerCoin.T;
+  let coin2: R#XPeerCoin.T;
+  let total: u64;
+
+  total = move(amount1) + copy(amount2);
+  coin1 = XPeerAccount.withdraw_from_sender(move(total));
+  // This mutates `coin1`, which now has value `amount1`.
+  // `coin2` has value `amount2`.
+  coin2 = XPeerCoin.withdraw(&mut coin1, move(amount2));
+
+  // Perform the payments
+  XPeerAccount.deposit(move(payee1), move(coin1));
+  XPeerAccount.deposit(move(payee2), move(coin2));
+  return;
+}
