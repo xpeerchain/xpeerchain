@@ -1,4 +1,4 @@
-<a href="https://developers.xpeer.org">
+<a href="http://xpeer.org">
 	<img width="200" src="./.assets/xpeer.png" alt="XPeer Logo" />
 </a>
 
