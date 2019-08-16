@@ -10,10 +10,12 @@ use canonical_serialization::{
 };
 use crypto::{
     hash::{AccountAddressHasher, CryptoHash, CryptoHasher},
-    HashValue, PublicKey,
+    HashValue,
 };
 use failure::prelude::*;
 use hex;
+use nextgen_crypto::VerifyingKey;
+#[cfg(any(test, feature = "testing"))]
 use proptest_derive::Arbitrary;
 use proto_conv::{FromProto, IntoProto};
 use rand::{rngs::OsRng, Rng};
@@ -29,9 +31,8 @@ const LIBRA_NETWORK_ID_SHORT: &str = "lb";
 
 /// A struct that represents an account address.
 /// Currently Public Key is used.
-#[derive(
-    Arbitrary, Ord, PartialOrd, Eq, PartialEq, Hash, Default, Clone, Serialize, Deserialize, Copy,
-)]
+#[derive(Ord, PartialOrd, Eq, PartialEq, Hash, Default, Clone, Serialize, Deserialize, Copy)]
+#[cfg_attr(any(test, feature = "testing"), derive(Arbitrary))]
 pub struct AccountAddress([u8; ADDRESS_LENGTH]);
 
 impl AccountAddress {
@@ -52,6 +53,37 @@ impl AccountAddress {
 
     pub fn to_vec(&self) -> Vec<u8> {
         self.0.to_vec()
+    }
+
+    pub fn from_public_key<PublicKey: VerifyingKey>(public_key: &PublicKey) -> Self {
+        // TODO: using keccak directly instead of crypto::hash because we have to make sure we use
+        // the same hash function that the Move transaction prologue is using.
+        // TODO: keccak is just a placeholder, make a principled choice for the hash function
+        let mut keccak = Keccak::new_sha3_256();
+        let mut hash = [0u8; ADDRESS_LENGTH];
+        keccak.update(&public_key.to_bytes());
+        keccak.finalize(&mut hash);
+        AccountAddress::new(hash)
+    }
+
+    pub fn from_hex_literal(literal: &str) -> Result<Self> {
+        let mut hex_string = String::from(&literal[2..]);
+        if hex_string.len() % 2 != 0 {
+            hex_string.insert(0, '0');
+        }
+
+        let mut result = hex::decode(hex_string.as_str())?;
+        let len = result.len();
+        if len < 32 {
+            result.reverse();
+            for _ in len..32 {
+                result.push(0);
+            }
+            result.reverse();
+        }
+
+        assert!(result.len() >= 32);
+        AccountAddress::try_from(result)
     }
 }
 
@@ -164,19 +196,6 @@ impl IntoProto for AccountAddress {
 
     fn into_proto(self) -> Self::ProtoType {
         self.0.to_vec()
-    }
-}
-
-impl From<PublicKey> for AccountAddress {
-    fn from(public_key: PublicKey) -> AccountAddress {
-        // TODO: using keccak directly instead of crypto::hash because we have to make sure we use
-        // the same hash function that the Move transaction prologue is using.
-        // TODO: keccak is just a placeholder, make a principled choice for the hash function
-        let mut keccak = Keccak::new_sha3_256();
-        let mut hash = [0u8; ADDRESS_LENGTH];
-        keccak.update(&public_key.to_slice());
-        keccak.finalize(&mut hash);
-        AccountAddress::new(hash)
     }
 }
 
