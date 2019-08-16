@@ -17,6 +17,7 @@ use crypto::{
     HashValue,
 };
 use failure::prelude::*;
+#[cfg(any(test, feature = "testing"))]
 use proptest_derive::Arbitrary;
 use proto_conv::{FromProto, IntoProto};
 
@@ -100,7 +101,8 @@ impl CryptoHash for ContractEvent {
     }
 }
 
-#[derive(Arbitrary, Clone, Debug, Eq, PartialEq, FromProto, IntoProto)]
+#[derive(Clone, Debug, Eq, PartialEq, FromProto, IntoProto)]
+#[cfg_attr(any(test, feature = "testing"), derive(Arbitrary))]
 #[ProtoType(crate::proto::events::EventWithProof)]
 pub struct EventWithProof {
     pub transaction_version: u64, // Should be `Version`, but FromProto derive won't work that way.
@@ -140,7 +142,7 @@ impl EventWithProof {
     ///
     /// Two things are ensured if no error is raised:
     ///   1. This event exists in the ledger represented by `ledger_info`.
-    ///   2. And this event has the same `access_path`, `sequence_number`, `transaction_version`,
+    ///   2. And this event has the same `event_key`, `sequence_number`, `transaction_version`,
     /// and `event_index` as indicated in the parameter list. If any of these parameter is unknown
     /// to the call site and is supposed to be informed by this struct, get it from the struct
     /// itself, such as: `event_with_proof.event.access_path()`, `event_with_proof.event_index()`,
@@ -148,16 +150,16 @@ impl EventWithProof {
     pub fn verify(
         &self,
         ledger_info: &LedgerInfo,
-        access_path: &AccessPath,
+        event_key: &AccessPath,
         sequence_number: u64,
         transaction_version: Version,
         event_index: u64,
     ) -> Result<()> {
         ensure!(
-            self.event.access_path() == access_path,
-            "Access path ({}) not expected ({}).",
+            self.event.access_path() == event_key,
+            "Event key ({}) not expected ({}).",
             self.event.access_path(),
-            *access_path,
+            *event_key,
         );
         ensure!(
             self.event.sequence_number == sequence_number,
